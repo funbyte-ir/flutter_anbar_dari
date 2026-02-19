@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 class ProductDialog extends StatelessWidget {
   ProductDialog(this.callback, {super.key});
 
-  Function(Product) callback;
+  Function(String, int) callback;
 
-  Product? product;
-
-  TextEditingController nameController = TextEditingController();
-  TextEditingController countController = TextEditingController();
+  // Product? product;
+  String name = '';
+  int count = 0;
+  //TextEditingController nameController = TextEditingController();
+  // TextEditingController countController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +22,24 @@ class ProductDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
-              controller: nameController,
+              //controller: nameController,
+              onChanged: (value) {
+                name = value;
+              },
+
               decoration: InputDecoration(labelText: 'نام محصول'),
             ),
             TextField(
-              controller: countController,
+              // controller: countController,
+              onChanged: (value) {
+                count = int.tryParse(value) ?? 0;
+                //  if (product != null) {
+                //   product = Product(
+                //  name: product!.name,
+                //     count: int.tryParse(value) ?? 0,
+                // );
+                // }
+              },
               decoration: InputDecoration(labelText: 'تعداد'),
             ),
           ],
@@ -39,12 +53,9 @@ class ProductDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              product = Product(
-                nameController.text,
-                int.parse(countController.text),
-              );
+              // product = Product( name,  count);
 
-              callback(product!);
+              callback(name, count);
               Navigator.of(context).pop();
             },
             child: Text('ثبت'),

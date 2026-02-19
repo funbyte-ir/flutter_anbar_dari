@@ -11,8 +11,9 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> {
   List<Product> products = [];
 
-  void addProduct(Product product) {
+  void addProduct(String name, int count) {
     setState(() {
+      Product product = Product(name, count);
       products.add(product);
     });
   }
