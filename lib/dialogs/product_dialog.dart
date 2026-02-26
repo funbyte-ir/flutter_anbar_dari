@@ -1,14 +1,12 @@
-import 'package:anbar_dari/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductDialog extends StatelessWidget {
   ProductDialog(this.callback, {super.key});
 
-  Function(String, int) callback;
+  final Function(String) callback;
 
   // Product? product;
   String name = '';
-  int count = 0;
   //TextEditingController nameController = TextEditingController();
   // TextEditingController countController = TextEditingController();
 
@@ -29,19 +27,6 @@ class ProductDialog extends StatelessWidget {
 
               decoration: InputDecoration(labelText: 'نام محصول'),
             ),
-            TextField(
-              // controller: countController,
-              onChanged: (value) {
-                count = int.tryParse(value) ?? 0;
-                //  if (product != null) {
-                //   product = Product(
-                //  name: product!.name,
-                //     count: int.tryParse(value) ?? 0,
-                // );
-                // }
-              },
-              decoration: InputDecoration(labelText: 'تعداد'),
-            ),
           ],
         ),
         actions: [
@@ -55,7 +40,7 @@ class ProductDialog extends StatelessWidget {
             onPressed: () {
               // product = Product( name,  count);
 
-              callback(name, count);
+              callback(name);
               Navigator.of(context).pop();
             },
             child: Text('ثبت'),

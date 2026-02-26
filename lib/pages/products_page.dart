@@ -1,6 +1,7 @@
 import 'package:anbar_dari/dialogs/product_dialog.dart';
 import 'package:anbar_dari/models/product.dart';
 import 'package:anbar_dari/widgets/app_drawer.dart';
+import 'package:anbar_dari/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -11,9 +12,9 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> {
   List<Product> products = [];
 
-  void addProduct(String name, int count) {
+  void addProduct(String name) {
     setState(() {
-      Product product = Product(name, count);
+      Product product = Product(name);
       products.add(product);
     });
   }
@@ -42,12 +43,11 @@ class _ProductsPageState extends State<ProductsPage> {
         ),
         body: Column(
           children: [
-            ListView.builder(
-              itemCount: products.length,
+            ListView(
               shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Text(products[index].name);
-              },
+              children: products
+                  .map((product) => ProductCard(product))
+                  .toList(),
             ),
           ],
         ),

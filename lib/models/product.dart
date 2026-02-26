@@ -1,6 +1,8 @@
 class Product {
   String name;
-  int count;
+  int count = 0;
 
-  Product(this.name, this.count);
+  int price = 0;
+
+  Product(this.name);
 }
